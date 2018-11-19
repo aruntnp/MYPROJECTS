@@ -1,0 +1,47 @@
+{% extends 'products/Product-Base.html' %}
+
+{% block content %}
+<h1>Cart - {{ cart }}</h1>
+
+{% if cart.products.exists %}
+<table class="table" >
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Product Name</th>
+        <th scope="col">Qty</th>
+        <th scope="col">Price</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for prod in cart.products.all %}
+    <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td><a href="{{ prod.get_absolute_url }}"> {{ prod.title }}</a></td>
+        <td>1</td>
+        <td>{{ prod.price }}</td>
+        <td>Remove</td>
+    </tr>
+    {% endfor %}
+
+    <tr>
+        <td colspan="3"></td>
+        <td align="right"><b>Sub Total: </b>{{ cart.subtotal }}</td>
+    </tr>
+    <tr>
+        <td colspan="3"></td>
+        <td align="right"><b>Total:</b>{{ cart.total }}</td>
+    </tr>
+    <tr>
+        <td colspan="3"></td>
+        <td align="right"><a class="btn btn-lg btn-success" href="{% url 'cart:checkout' %}">Checkout</a> </td>
+    </tr>
+    </tbody>
+</table>
+{% else %}
+<p class="lead"> No products in your Cart</p>
+{% endif %}
+
+
+{% endblock %}

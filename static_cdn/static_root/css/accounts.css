@@ -1,0 +1,25 @@
+body {
+  background-image: url(../img/accounts_bg.jpg);
+}
+
+.logo {
+  font-family: 'Peralta', cursive;
+}
+
+.logo a {
+  color: rgba(0,0,0,.9);
+}
+
+.logo a:hover,
+.logo a:active {
+  text-decoration: none;
+}
+
+span {
+    margin: -1px 1px 1px -1px;
+    line-height: 2em;
+    border-top: 1px solid blue;
+    border-left: 1px solid green;
+    padding: 0.4em;
+    float: left;
+}

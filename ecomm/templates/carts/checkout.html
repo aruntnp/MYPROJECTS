@@ -1,0 +1,33 @@
+{% extends 'products/Product-Base.html' %}
+
+{% block content %}
+
+{% if not billing_profile %}
+<div class="row justify-content-md-center">
+
+    <div class="col-12 col-md-6">
+        <h2>Please Login to Checkout</h2>
+        <a class="btn btn-success" href="{% url 'login' %}?next={% firstof request.path '/' %}">Login</a>
+    </div>
+
+    <div class="col-12 col-md-6">
+        <h3>Continue as Guest?</h3>
+        <form method="post" action="{% url 'guest_login' %}" novalidate>
+            {% csrf_token %}
+            {% include 'includes/form.html' %}
+            {% if next %}
+            <input type="hidden" name="next" value="{{ next }}">
+            {% endif %}
+            <button type="submit" class="btn btn-primary btn-block">Continue as Guest?</button>
+        </form>
+    </div>
+
+</div>
+{% else %}
+<h1>Checkout Page</h1>
+<p>Cart Total : {{ object.cart.total }}</p>
+<p>Shipping : {{ object.shipping_total }}</p>
+<p>Total : {{ object.total }}</p>
+{% endif %}
+
+{% endblock %}

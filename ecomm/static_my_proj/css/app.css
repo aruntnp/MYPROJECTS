@@ -1,0 +1,51 @@
+html,
+body {
+  height: 100%;
+}
+
+.navbar-brand {
+  font-family: 'Peralta', cursive;
+}
+
+blockquote {
+  border-left: 5px solid rgba(0,0,0,.125);
+  padding-left: 1.25rem;
+}
+
+.img-responsive {
+    width: 500px;
+    height: 500px !important;
+}
+
+.img-wrapper {
+  position: relative;
+  padding-bottom: 100%;
+  overflow: hidden;
+  width: 100%;
+}
+.img-wrapper img {
+  position: absolute;
+  top:0;
+  left:0;
+  width: 290px;
+  height: 300px;
+}
+
+.wrapper {
+  position: relative;
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -60px;
+}
+
+.push {
+  height: 60px;
+}
+
+footer {
+  height: 60px;
+  padding: 15px 0;
+  background-color: #e9ecef;
+  position: relative;
+}
