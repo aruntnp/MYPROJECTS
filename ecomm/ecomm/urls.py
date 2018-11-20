@@ -34,7 +34,7 @@ urlpatterns = [
     url(r'^signup/$', accounts_views.SignUp.as_view(), name='signup'),
     url(r'^signup/guest/$', accounts_views.GuestLoginView.as_view(), name='guest_login'),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
-    url(r'^login/$', auth_views.LoginView.as_view(template_name='accounts/login.html'), name='login'),
+    url(r'^login/$', accounts_views.MyLoginView.as_view(), name='login'),
 
 ]
 

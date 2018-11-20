@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import FormView
+from django.contrib.auth.views import LoginView
+from django.contrib.auth import authenticate
 
 from .forms import SignUpForm
 from django.urls import reverse_lazy
@@ -46,3 +48,18 @@ class GuestLoginView(FormView):
             return redirect('cart:checkout')
 
         return redirect('cart:checkout')
+
+
+class MyLoginView(LoginView):
+    template_name = 'accounts/login.html'
+
+    def form_valid(self, form):
+        # print('--------------- MY FORM_VALID CALLED-----------')
+        try:
+            del self.request.session['guest_email_id']
+            # print('*********************** DELETED GUEST EMAIL ******************')
+        except:
+            # print('*********************** NOT DELETED GUEST EMAIL ******************')
+            pass
+
+        return super(MyLoginView, self).form_valid(form)

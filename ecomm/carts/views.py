@@ -45,22 +45,24 @@ def checkout_home(request):
     order_obj = None
     if cart_created or cart_obj.products.count() == 0:
         return redirect('cart:home')
+
+    billing_profile = None
+    guest_form = GuestForm()
+    guest_email_id = request.session.get('guest_email_id')
+    user = request.user
+    next_url = request.build_absolute_uri
+    if user.is_authenticated():
+        billing_profile, billing_profile_created = BillingProfile.objects.get_or_create(user=user, email=user.email)
+    elif guest_email_id is not None:
+        guest_email_obj = GuestEmail.objects.get(id=guest_email_id)
+        billing_profile, billing_guest_profile_created = BillingProfile.objects.get_or_create(
+            email=guest_email_obj.email)
     else:
-        # print('Login Mode -------------')
-        order_obj, new_order_obj = Order.objects.get_or_create(cart=cart_obj)
-        billing_profile = None
-        guest_form = GuestForm()
-        guest_email_id = request.session.get('guest_email_id')
-        user = request.user
-        next_url = request.build_absolute_uri
-        if user.is_authenticated():
-            billing_profile, billing_profile_created = BillingProfile.objects.get_or_create(user=user, email=user.email)
-        elif guest_email_id is not None:
-            guest_email_obj = GuestEmail.objects.get(id=guest_email_id)
-            billing_profile, billing_guest_profile_created = BillingProfile.objects.get_or_create(email=guest_email_obj.email)
-        else:
-            pass
-            #RAISE ERROR
+        pass
+        # RAISE ERROR
+    if billing_profile is not None:
+       order_obj, order_obj_created = Order.objects.new_or_get(billing_profile, cart_obj)
+
 
     context = {
         'object': order_obj,

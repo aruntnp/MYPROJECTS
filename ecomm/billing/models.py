@@ -13,7 +13,7 @@ class BillingProfile(models.Model):
     active = models.BooleanField(default=True)
     update = models.DateTimeField(auto_now=True)
     timestamp = models.DateTimeField(auto_now_add=True)
-
+    # active = models.BooleanField(default=True)
     # Customer_id in Stripe
 
     def __str__(self):
