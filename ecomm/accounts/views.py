@@ -21,28 +21,36 @@ class SignUp(CreateView):
 
 class GuestLoginView(FormView):
     form_class = GuestForm
-    template_name = 'carts/checkout.html'
-    success_url = 'carts/checkout.html'
+    template_name =  reverse_lazy('guest_login')
+    success_url = reverse_lazy('cart:checkout')
 
-    # def form_valid(self, form):
+    # def form_valid(self, form, **kwargs):
     #     guest_email = form.cleaned_data.get('email')  # This is coming from client side.
-    #     new_guest_email = GuestEmail.objects.create(
-    #         email=guest_email)  # This will create a new email in db and store objects in variable.
-    #     # request.session['guest_email_id'] = new_guest_email.id
+    #     new_guest_email = GuestEmail.objects.create(email=guest_email)  # This will create a new email in db and store objects in variable.
+    #     request = kwargs['request']
+    #     request.session['guest_email_id'] = new_guest_email.id
+    #     context = self.get_context_data(**kwargs)
+    #     context['form'] = form
     #     return super().form_valid(form)
+    #
+    # # def form_invalid(self, form, **kwargs):
+    # #     context = self.get_context_data(**kwargs)
+    # #     context['form'] = form
+    # #     return self.render_to_response(context)
+    #
+    #
+    # def get(self, request, *args, **kwargs):
+    #     form_class = self.get_form_class()
+    #     form = self.get_form(form_class)
+    #     context = self.get_context_data(**kwargs)
+    #     context['form'] = form
+    #     return self.render_to_response(context)
+    #
+    # def post(self, request, *args, **kwargs):
+    #     form = self.form_class(request.POST)
+    #     if form.is_valid():
+    #         kwargs = {'request':request}
+    #         return self.form_valid(form, **kwargs)
+    #     else:
+    #         return self.form_invalid(form, **kwargs)
 
-    def get(self, request, *args, **kwargs):
-        form = self.form_class
-        return render(request, self.template_name, {'form': form})
-
-    def post(self, request, *args, **kwargs):
-        form = self.form_class(request.POST)
-        context = {'form': form}
-        if form.is_valid():
-            guest_email = form.cleaned_data.get('email')  # This is coming from client side.
-            new_guest_email = GuestEmail.objects.create(
-                email=guest_email)  # This will create a new email in db and store objects in variable.
-            request.session['guest_email_id'] = new_guest_email.id
-            return redirect('cart:checkout')
-
-        return redirect('cart:checkout')
