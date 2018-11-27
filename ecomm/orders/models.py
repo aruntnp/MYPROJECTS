@@ -4,6 +4,7 @@ from carts.models import Cart
 from ecomm.utils import unique_order_id_generator
 from django.db.models.signals import pre_save, post_save
 from billing.models import BillingProfile
+from addresses.models import Address
 
 # Create your models here.
 ORDER_STATUS_CHOICE = (
@@ -32,9 +33,8 @@ class OrderManager(models.Manager):
 class Order(models.Model):
     order_id = models.CharField(max_length=120, blank=True)
     billing_profile = models.ForeignKey(BillingProfile, null=True, blank=True)  # TODO: future
-    # shipping_address =
-    # billing_address =
-
+    shipping_address = models.ForeignKey(Address, null=True, blank=True, related_name='shipping_address')
+    billing_address = models.ForeignKey(Address, null=True, blank=True, related_name='billing_address')
     cart = models.ForeignKey(Cart)
     status = models.CharField(max_length=120, default='created', choices=ORDER_STATUS_CHOICE)
     shipping_total = models.DecimalField(default=10.00, max_digits=100, decimal_places=2)
@@ -44,7 +44,7 @@ class Order(models.Model):
     def __str__(self):
         return self.order_id
 
-    objects = OrderManager()      #please see it's objects arun not object
+    objects = OrderManager()  # please see it's objects arun not object
 
     def update_total(self):
         cart_total = self.cart.total

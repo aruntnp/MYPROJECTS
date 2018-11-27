@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'image_cropping',
 
     # MY_APPS
+    'addresses',
     'products',
     'carts',
     'accounts',

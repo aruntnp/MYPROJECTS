@@ -26,10 +26,17 @@
 
 </div>
 {% else %}
-<h1>Checkout Page</h1>
-<p>Cart Total : {{ object.cart.total }}</p>
-<p>Shipping : {{ object.shipping_total }}</p>
-<p>Total : {{ object.total }}</p>
+
+    {% if not object.billing_address and not object.shipping_address %}
+
+
+    {% else %}
+        <h1>Checkout Page</h1>
+        <p>Cart Total : {{ object.cart.total }}</p>
+        <p>Shipping : {{ object.shipping_total }}</p>
+        <p>Total : {{ object.total }}</p>
+    {% endif %}
+
 {% endif %}
 
 {% endblock %}

@@ -41,6 +41,9 @@ class CartManager(models.Manager):  # <----------------- This is copied from CFE
             new_obj = False
             cart_obj = qs.first()
             if request.user.is_authenticated() and cart_obj.user is None:
+                print('--------------------------------')
+                print(request.user)
+                print('****************** END ****************')
                 cart_obj.user = request.user
                 cart_obj.save()
         else:
