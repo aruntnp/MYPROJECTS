@@ -3,7 +3,9 @@
 {% block content %}
 
 {{ object.order_id }} -- {{ object.cart }}
-
+<br>
+<hr>
+<br>
 {% if not billing_profile %}
 <div class="row justify-content-md-center">
 
@@ -27,14 +29,51 @@
 </div>
 {% else %}
 
-    {% if not object.billing_address and not object.shipping_address %}
+    {% if not object.shipping_address %}
+        <row>
+        <div class="col-12 col-md-6">
+            <h3>SHIPPING ADDRESS:</h3>
+            <hr>
+        <form method="post" action="{% url 'checkout_address_create' %}" novalidate>
+            {% csrf_token %}
+            {% include 'includes/form.html' with form=address_form %}
+            {% if next %}
+            <input type="hidden" name="next" value="{{ next }}">
+            {% endif %}
+            <input type="hidden" name="address_type" value="shipping">
+            <button type="submit" class="btn btn-primary btn-block">Save Address</button>
+        </form>
+        </div>
+        </row>
 
+    {% elif not object.billing_address %}
+        <row>
+        <div class="col-12 col-md-6">
+            <h3>BILLING ADDRESS:</h3>
+            <hr>
+            <br>
+        <form method="post" action="{% url 'checkout_address_create' %}" novalidate>
+            {% csrf_token %}
+            {% include 'includes/form.html' with form=address_form %}
+            {% if next %}
+            <input type="hidden" name="next" value="{{ next }}">
+            {% endif %}
+            <input type="hidden" name="address_type" value="billing">
+            <button type="submit" class="btn btn-primary btn-block">Save Address</button>
+        </form>
+        </div>
+        </row>
 
     {% else %}
-        <h1>Checkout Page</h1>
+        <h1>FINALIZE CHECKOUT</h1>
+        <hr>
+        <br>
         <p>Cart Total : {{ object.cart.total }}</p>
         <p>Shipping : {{ object.shipping_total }}</p>
         <p>Total : {{ object.total }}</p>
+        <form class="form" method="POST", action="">{% csrf_token %}
+        <button type="submit" class="btn btn btn-success">Checkout</button>
+        </form>
     {% endif %}
 
 {% endif %}

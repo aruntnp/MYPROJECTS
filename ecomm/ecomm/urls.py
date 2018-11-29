@@ -21,6 +21,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from accounts import views as accounts_views
+from addresses import views as address_view
 from products.views import ProductListView
 from products import urls
 
@@ -29,6 +30,7 @@ from carts import urls
 urlpatterns = [
     url(r'^$', ProductListView.as_view(), name='home'),
     url(r'^admin/', admin.site.urls),
+    url(r'^checkout/address/create/', address_view.CheckoutAddressView.as_view(), name='checkout_address_create'),
     url(r'^cart/', include('carts.urls', namespace='cart'), ),
     url(r'^products/', include('products.urls', namespace='prod')),
     url(r'^signup/$', accounts_views.SignUp.as_view(), name='signup'),
