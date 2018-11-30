@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Cart
 from accounts.forms import GuestForm
 from addresses.forms import AddressForm
+from addresses.models import Address
 
 from products.models import Product
 from orders.models import Order
@@ -51,12 +52,33 @@ def checkout_home(request):
     guest_form = GuestForm()
     address_form = AddressForm()
     billing_address_form = AddressForm()
+    # CODE REF VIDEO 089
+    billing_address_id = request.session.get("billing_address_id", None)
+    shipping_address_id = request.session.get("shipping_address_id", None)
+
 
     billing_profile, billing_profile_created = BillingProfile.objects.new_or_get(request)
     #  SOME CODEs ARE COPIED TO MODEL MANAGER(BILLING)
 
     if billing_profile is not None:
         order_obj, order_obj_created = Order.objects.new_or_get(billing_profile, cart_obj)
+        if shipping_address_id:
+            order_obj.shipping_address = Address.objects.get(id = shipping_address_id)
+            del request.session['shipping_address_id']
+        if billing_address_id:
+            order_obj.billing_address = Address.objects.get(id = billing_address_id)
+            del request.session['billing_address_id']
+        if billing_address_id or shipping_address_id:
+            order_obj.save()
+
+    if request.method == 'POST':
+
+        is_done = order_obj.check_done()
+        if is_done:
+            order_obj.mark_paid()
+            del request.session['cart_id']
+            request.session['cart_items'] = 0
+            return redirect('/cart/success')
 
     context = {
         'object': order_obj,

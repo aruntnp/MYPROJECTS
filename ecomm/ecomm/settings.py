@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
     # MY_APPS
     'addresses',
+    # 'addressus',
     'products',
     'carts',
     'accounts',
@@ -56,13 +57,9 @@ INSTALLED_APPS = [
 
 ]
 
-
-
-
 THUMBNAIL_PROCESSORS = (
-    'image_cropping.thumbnail_processors.crop_corners',
-) + thumbnail_settings.THUMBNAIL_PROCESSORS
-
+                           'image_cropping.thumbnail_processors.crop_corners',
+                       ) + thumbnail_settings.THUMBNAIL_PROCESSORS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
