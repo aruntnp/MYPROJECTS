@@ -61,6 +61,40 @@ class ProductManager(models.Manager):
 
 # ------------------- END EXTRAS -------------------------
 
+class Category(models.Model):
+    title = models.CharField(max_length=120)
+    slug = models.SlugField(null=True, blank=True, unique=True)
+    parent = models.ForeignKey('self', blank=True, null=True, related_name='child')
+
+    def __str__(self):
+        _name = [self.title]
+        _parent = self.parent
+
+        while _parent is not None:
+            _name.append(_parent.title)
+            _parent = _parent.parent
+
+        return ' -> '.join(_name[::-1])
+
+
+GENDER_CHOICES = (
+    ('male', 'Male'),
+    ('female', 'Female'),
+    ('m&f', "Male & Female"),
+    ('baby', 'Baby'),
+
+)
+
+class ProductDetail(models.Model):
+    product = models.ForeignKey('Product', related_name='product_details')
+    product_for = models.CharField(max_length=120, null=True, blank=True, choices=GENDER_CHOICES)
+    product_type = models.CharField(max_length=180, null=True, blank=True)
+    material = models.CharField(max_length=180, null=True, blank=True)
+    product_size_available = models.CharField(max_length=20, null=True, blank=True)
+
+    def __str__(self):
+        return str(self.product)
+
 
 class Product(models.Model):
     title = models.CharField(max_length=120)
@@ -92,3 +126,11 @@ def product_pre_save_receiver(sender, instance, *args, **kwargs):
 
 
 pre_save.connect(product_pre_save_receiver, sender=Product)
+
+
+def category_pre_save_receiver(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = unique_slug_generator(instance)
+
+
+pre_save.connect(category_pre_save_receiver, sender=Category)
