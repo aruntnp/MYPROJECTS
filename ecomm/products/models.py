@@ -96,12 +96,19 @@ class ProductDetail(models.Model):
         return str(self.product)
 
 
+
+class ProductImage(models.Model):
+    product = models.ForeignKey('Product', related_name='images')
+    images = models.ImageField(upload_to=upload_img_path, null=True, blank=True, verbose_name='image')
+
+
+
 class Product(models.Model):
     title = models.CharField(max_length=120)
     slug = models.SlugField(blank=True, unique=True)
     description = models.TextField()
     price = models.DecimalField(decimal_places=2, max_digits=20, default=0.0)
-    image = models.ImageField(upload_to=upload_img_path, null=True, blank=True)
+    # image = models.ImageField(upload_to=upload_img_path, null=True, blank=True)
     featured = models.BooleanField(default=False)
     active = models.BooleanField(default=True)
     timestamp = models.DateTimeField(auto_now_add=True)
