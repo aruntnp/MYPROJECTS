@@ -1,12 +1,19 @@
 from django.contrib import admin
-from .models import Product, Category, ProductDetail
+from .models import Product, Category, ProductDetail, ProductImage
 # Register your models here.
 
-class ProductAdmin(admin.ModelAdmin):
-    list_display = ['__str__', 'slug','pk']
+class ImagesInline(admin.TabularInline):
+    model = ProductImage
 
+
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ['__str__', 'slug', 'pk']
+    inlines = [
+        ImagesInline,
+    ]
     class Meta:
-        model= Product
+        model = Product
+
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['__str__', 'slug','pk']
