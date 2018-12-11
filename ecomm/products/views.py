@@ -1,7 +1,7 @@
 from django.views.generic import ListView, DetailView
 # from django.shortcuts import render
 from django.http import Http404
-from .models import Product
+from .models import Product, ProductImage
 
 from carts.models import Cart
 # from django.urls import reverse
@@ -37,6 +37,7 @@ class ProductDetailSlugView(DetailView):
         context = super(ProductDetailSlugView, self).get_context_data(*args, **kwargs)
         cart_obj, new_obj = Cart.objects.new_or_get(self.request)
         context['cart'] = cart_obj
+        # context['product'] = Product.objects.all()
         return context
 
     def get_object(self, *args, **kwargs):
@@ -53,6 +54,10 @@ class ProductDetailSlugView(DetailView):
             instance = qs.first()
         except:
             raise Http404('Something went wrong.. ')
+        print("inst -- "+str(instance))
+
+        # val = ProductImage.objects.get(product = instance).first()
+        # instance = val
         print(instance)
         return instance
 

@@ -26,7 +26,7 @@ SECRET_KEY = 'el)*wms615ps69v(6x7)sixp#+qp%q-e_o02ywtufblp^7gip4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '192.168.0.134', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 #
 # Application definition
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'easy_thumbnails',
     'image_cropping',
+    # 'suit',
 
     # MY_APPS
     'addresses',

@@ -1,13 +1,16 @@
 {% extends 'products/Product-Base.html' %}
 
 {% block content %}
+
 <div class="row">
 
     <div class="col col-12 col-md-6">
         <div class="card" style="width: 18rem;">
 
-            {% if object.image %}
-            <img class="card-img-top" src="{{ object.image.url }}" alt="Card image cap">
+            {% if object.pimage.all %}
+            {% for p in object.pimage.all %}
+            <img class="card-img-top" src="{{ p.images.url }}" alt="Card image cap">
+            {% endfor %}
             {% endif %}
             <div class="card-body">
                 <h5 class="card-title">{{ object.title }}</h5>
@@ -32,7 +35,6 @@
     </div>
 
 </div>
-
 
 <br>
 

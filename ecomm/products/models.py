@@ -65,6 +65,7 @@ class Category(models.Model):
     title = models.CharField(max_length=120)
     slug = models.SlugField(null=True, blank=True, unique=True)
     parent = models.ForeignKey('self', blank=True, null=True, related_name='child')
+    products = models.ManyToManyField('Product')
 
     def __str__(self):
         _name = [self.title]
@@ -97,10 +98,14 @@ class ProductDetail(models.Model):
 
 
 
+
+
 class ProductImage(models.Model):
-    product = models.ForeignKey('Product', related_name='images')
+    product = models.ForeignKey('Product', null=True, blank=True, related_name='pimage')
     images = models.ImageField(upload_to=upload_img_path, null=True, blank=True, verbose_name='image')
 
+    def __str__(self):
+        return str(self.product)
 
 
 class Product(models.Model):
