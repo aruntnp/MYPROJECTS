@@ -26,7 +26,6 @@ from carts.models import Cart
 
 # 'view': <products.views.ProductListView object at 0x000001BCD5B3D898>}
 
-
 # ***************************************** PRODUCT SLUG VIEW **************************************
 
 class ProductDetailSlugView(DetailView):
