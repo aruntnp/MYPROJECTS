@@ -3,8 +3,12 @@ from django.urls import reverse
 
 import os
 import random
+
 from ecomm.utils import unique_slug_generator
 from django.db.models.signals import pre_save, post_save
+
+from imagekit.models import ImageSpecField, ProcessedImageField
+from imagekit.processors import ResizeToFill
 
 
 # Create your models here.
@@ -12,7 +16,7 @@ from django.db.models.signals import pre_save, post_save
 # ******************** EXTRAS ****************************
 def upload_img_path(instance, filename):
     print(instance)
-    print(' ')
+    # print(' ')
     print(filename)
     new_filename = random.randint(0, 94743824)
     name, ext = get_file_ext(filename)
@@ -102,7 +106,15 @@ class ProductDetail(models.Model):
 
 class ProductImage(models.Model):
     product = models.ForeignKey('Product', null=True, blank=True, related_name='pimage')
-    images = models.ImageField(upload_to=upload_img_path, null=True, blank=True, verbose_name='image')
+    images = ProcessedImageField(upload_to=upload_img_path, processors=[ResizeToFill(540, 720)],format='JPEG')
+    upload_path = upload_img_path
+    images_list = ImageSpecField(source='images',
+                                      processors=[ResizeToFill(236, 325)],
+                                      format='JPEG')
+
+    images_thumb = ImageSpecField(source='images',
+                                      processors=[ResizeToFill(146, 194)],
+                                      format='JPEG')
 
     def __str__(self):
         return str(self.product)

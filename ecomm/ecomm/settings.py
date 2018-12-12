@@ -41,8 +41,9 @@ INSTALLED_APPS = [
 
     # 3rd PARTY
     'widget_tweaks',
-    'easy_thumbnails',
-    'image_cropping',
+    'imagekit',
+    # 'easy_thumbnails',
+    # 'image_cropping',
     # 'suit',
 
     # MY_APPS
