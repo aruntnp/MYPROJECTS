@@ -83,38 +83,37 @@ class Category(models.Model):
 
 
 GENDER_CHOICES = (
-    ('male', 'Male'),
-    ('female', 'Female'),
-    ('m&f', "Male & Female"),
-    ('baby', 'Baby'),
-
+    ('male', 'Male'), ('female', 'Female'), ('m&f', "Male & Female"), ('baby', 'Baby'),
 )
 
-class ProductDetail(models.Model):
-    product = models.ForeignKey('Product', related_name='product_details')
-    product_for = models.CharField(max_length=120, null=True, blank=True, choices=GENDER_CHOICES)
-    product_type = models.CharField(max_length=180, null=True, blank=True)
-    material = models.CharField(max_length=180, null=True, blank=True)
-    product_size_available = models.CharField(max_length=20, null=True, blank=True)
-
-    def __str__(self):
-        return str(self.product)
-
-
+#***************************************** THIS WILL BE ADDED ON FUTURE
+# class ProductSpec(models.Model):
+#     name = models.CharField(max_length=180, nul=True, blank=True)
+#
+#     def __str__(self):
+#         return str(self.name)
+#
+# class ProductSpecValue(models.Model):
+#     product = models.ForeignKey(Product, related_name='productspecvalue')
+#     productspec = models.ForeignKey(ProductSpec, related_name='productspec')
+#     value = models.CharField(max_length=500, null=True, Blank=True)
+#
+#     def __str__(self):
+#         return str(self.product)
 
 
 
 class ProductImage(models.Model):
     product = models.ForeignKey('Product', null=True, blank=True, related_name='pimage')
-    images = ProcessedImageField(upload_to=upload_img_path, processors=[ResizeToFill(540, 720)],format='JPEG')
+    images = ProcessedImageField(upload_to=upload_img_path, processors=[ResizeToFill(540, 720)], format='JPEG')
     upload_path = upload_img_path
     images_list = ImageSpecField(source='images',
-                                      processors=[ResizeToFill(236, 325)],
-                                      format='JPEG')
+                                 processors=[ResizeToFill(236, 325)],
+                                 format='JPEG')
 
     images_thumb = ImageSpecField(source='images',
-                                      processors=[ResizeToFill(146, 194)],
-                                      format='JPEG')
+                                  processors=[ResizeToFill(146, 194)],
+                                  format='JPEG')
 
     def __str__(self):
         return str(self.product)
@@ -125,13 +124,9 @@ class Product(models.Model):
     slug = models.SlugField(blank=True, unique=True)
     description = models.TextField()
     price = models.DecimalField(decimal_places=2, max_digits=20, default=0.0)
-    # image = models.ImageField(upload_to=upload_img_path, null=True, blank=True)
     featured = models.BooleanField(default=False)
     active = models.BooleanField(default=True)
     timestamp = models.DateTimeField(auto_now_add=True)
-    # Catalog
-    # Brand
-    #
 
     objects = ProductManager()
 
