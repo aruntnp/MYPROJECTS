@@ -38,7 +38,11 @@ urlpatterns = [
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
     url(r'^login/$', accounts_views.MyLoginView.as_view(), name='login'),
 
+
+
 ]
+
+# ------- END _---------------------
 
 if settings.DEBUG:
     urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

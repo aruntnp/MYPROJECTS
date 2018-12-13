@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 from easy_thumbnails.conf import Settings as thumbnail_settings
 
+
+# ---------------- END ---------------
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
@@ -42,6 +44,8 @@ INSTALLED_APPS = [
     # 3rd PARTY
     'widget_tweaks',
     'imagekit',
+    'mathfilters',
+    # 'fluent_dashboard',
     # 'easy_thumbnails',
     # 'image_cropping',
     # 'suit',
@@ -58,6 +62,7 @@ INSTALLED_APPS = [
     # MYFILE
 
 ]
+
 
 THUMBNAIL_PROCESSORS = (
                            'image_cropping.thumbnail_processors.crop_corners',
@@ -94,6 +99,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
             ],
         },
     },

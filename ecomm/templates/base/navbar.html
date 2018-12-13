@@ -1,56 +1,294 @@
 {% load static %}
-
-{% url 'prod:ProductListView' as product_list_url %}
-{% url 'cart:cart' as cart_url %}
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <div class="container">
-
-        <a class="navbar-brand" href="{% url 'home' %}">{{ brand }}</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu"
-                aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="mainMenu">
-            <ul class="navbar-nav">
-                <li class="nav-item {% if request.url == product_list_url %} active {% endif %}">
-                    <a class="nav-link" href="{{product_list_url}}">Products</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav">
-                <li class="nav-item {% if request.url == cart_url %} active {% endif %}">
-                    <a class="nav-link" href="{{ cart_url }}">Cart {{ request.session.cart_items }}</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <form class="form-inline">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
-                </li>
-            </ul>
-
-            {% if request.user.is_authenticated %}
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">
-                        {{ user.username }}
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
-                        <a class="dropdown-item" href="#">My account</a>
-                        <a class="dropdown-item" href="#">Change password</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
-                    </div>
-                </li>
-            </ul>
-            {% else %}
-            <form class="form-inline ml-auto">
-                <a href="{% url 'login' %}" class="btn btn-outline-secondary">Log in</a>
-                <a href="{% url 'signup' %}" class="btn btn-primary ml-2">Sign up</a>
-            </form>
-            {% endif %}
-        </div>
+<!-- Preloader -->
+<div class="loader-mask">
+    <div class="loader">
+        <div></div>
     </div>
-</nav>
+</div>
+
+
+<!-- Mobile Sidenav -->
+{% include 'base/mobnav.html' %}
+<!-- end mobile sidenav -->
+
+
+<main class="main oh" id="main">
+
+    <!-- Navigation -->
+    <header class="nav">
+
+        <div class="nav__holder nav--sticky">
+            <div class="container relative">
+
+                <!-- Top Bar -->
+                <div class="top-bar d-none d-lg-flex">
+
+                    <!-- Currency / Language -->
+                    <ul class="top-bar__currency-language">
+                        <li class="top-bar__language">
+                            <a href="#">English</a>
+                            <div class="top-bar__language-dropdown">
+                                <ul>
+                                    <li><a href="#">English</a></li>
+                                    <li><a href="#">Spanish</a></li>
+                                    <li><a href="#">German</a></li>
+                                    <li><a href="#">Chinese</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="top-bar__currency">
+                            <a href="#">24x7 Help</a>
+                            <div class="top-bar__currency-dropdown">
+                                <ul>
+                                    <li><a href="#">Order Issue</a></li>
+                                    <li><a href="#">Return item</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <!-- Promo -->
+                    <p class="top-bar__promo text-center">Free shipping on orders over <span style='font-family:Arial;'>&#8377;</span>2000
+                    </p>
+
+                    <!-- Sign in / Wishlist / Cart -->
+                    <div class="top-bar__right">
+
+                        <!-- Sign In -->
+                        <a href="login.html" class="top-bar__item top-bar__sign-in" id="top-bar__sign-in"><i
+                                class="ui-user"></i>Sign In</a>
+
+                        <!-- Wishlist -->
+                        <a href="#" class="top-bar__item"><i class="ui-heart"></i></a>
+
+                        <div class="top-bar__item nav-cart">
+                            <a href="cart.html">
+                                <i class="ui-bag"></i>(2)
+                            </a>
+                            <div class="nav-cart__dropdown">
+                                <div class="nav-cart__items">
+
+                                    <div class="nav-cart__item clearfix">
+                                        <div class="nav-cart__img">
+                                            <a href="#">
+                                                <img src="{% static 'img/shop/cart_small_1.jpg' %}" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="nav-cart__title">
+                                            <a href="#">
+                                                Classic White Tailored Shirt
+                                            </a>
+                                            <div class="nav-cart__price">
+                                                <span>1 x</span>
+                                                <span>19.99</span>
+                                            </div>
+                                        </div>
+                                        <div class="nav-cart__remove">
+                                            <a href="#"><i class="ui-close"></i></a>
+                                        </div>
+                                    </div>
+
+                                    <div class="nav-cart__item clearfix">
+                                        <div class="nav-cart__img">
+                                            <a href="#">
+                                                <img src="{% static 'img/shop/cart_small_2.jpg' %}" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="nav-cart__title">
+                                            <a href="#">
+                                                Sport Hi Adidas
+                                            </a>
+                                            <div class="nav-cart__price">
+                                                <span>1 x</span>
+                                                <span>29.00</span>
+                                            </div>
+                                        </div>
+                                        <div class="nav-cart__remove">
+                                            <a href="#"><i class="ui-close"></i></a>
+                                        </div>
+                                    </div>
+
+                                </div> <!-- end cart items -->
+
+                                <div class="nav-cart__summary">
+                                    <span>Cart Subtotal</span>
+                                    <span class="nav-cart__total-price">$1799.00</span>
+                                </div>
+
+                                <div class="nav-cart__actions mt-20">
+                                    <a href="#" class="btn btn-md btn-light"><span>View Cart</span></a>
+                                    <a href="#" class="btn btn-md btn-color mt-10"><span>Proceed to Checkout</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> <!-- end top bar -->
+
+                <div class="flex-parent sticky">
+
+                    <!-- Mobile Menu Button -->
+                    <button class="nav-icon-toggle" id="nav-icon-toggle" aria-label="Open mobile menu">
+              <span class="nav-icon-toggle__box">
+                <span class="nav-icon-toggle__inner"></span>
+              </span>
+                    </button> <!-- end mobile menu button -->
+
+                    <!-- Logo -->
+                    <a href="{% url 'home' %}" class="logo">
+                        <img class="logo__img" src="{% static 'img/logo_light.png' %}" alt="logo">
+                    </a>
+
+                    <!-- Nav-wrap -->
+
+                    <nav class="flex-child nav__wrap d-none d-lg-block">
+                        <ul class="nav__menu">
+
+                            <li class="nav__dropdown active">
+                                <a href="#">Men</a>
+                                <ul class="nav__dropdown-menu">
+                                    <li><a href="#">Shirt</a></li>
+                                    <li><a href="#">T-Shirt</a></li>
+                                    <li><a href="#">Cotton Phant</a></li>
+                                    <li><a href="#">Jeans</a></li>
+                                    <li><a href="#">Lower</a></li>
+                                    <li><a href="#">Hoodie &amp; Jackets</a></li>
+                                    <li><a href="#">Tracks</a></li>
+                                    <li><a href="#">Suits</a></li>
+                                    <li><a href="#">Shorts</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav__dropdown">
+                                <a href="#">Women</a>
+                                <ul class="nav__dropdown-menu">
+                                    <li><a href="#">T-Shirt</a></li>
+                                    <li><a href="#">Hipster</a></li>
+                                    <li><a href="#">Dress</a></li>
+                                    <li><a href="#">Hoodie &amp; Jackets</a></li>
+                                    <li><a href="#">Tees</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav__dropdown">
+                                <a href="#">Accessories</a>
+                                <ul class="nav__dropdown-menu nav__megamenu">
+                                    <li>
+                                        <div class="nav__megamenu-wrap">
+                                            <div class="row">
+
+                                                <div class="col nav__megamenu-item">
+                                                    <a href="#" class="nav__megamenu-title">All accessories</a>
+                                                    <ul class="nav__megamenu-list">
+                                                        <li><a href="#">Wallets</a></li>
+                                                        <li><a href="#">Scarfs</a></li>
+                                                        <li><a href="#">Belts</a></li>
+                                                        <li><a href="#">Shoes</a></li>
+                                                    </ul>
+                                                </div>
+
+                                                <div class="col nav__megamenu-item">
+                                                    <a href="#" class="nav__megamenu-title">for her</a>
+                                                    <ul class="nav__megamenu-list">
+                                                        <li><a href="#">T-Shirt</a></li>
+                                                        <li><a href="#">Hipster</a></li>
+                                                        <li><a href="#">Dress</a></li>
+                                                        <li><a href="#">Hoodie &amp; Jackets</a></li>
+                                                        <li><a href="#">Tees</a></li>
+                                                    </ul>
+                                                </div>
+
+                                                <div class="col nav__megamenu-item">
+                                                    <a href="#" class="nav__megamenu-title">for him</a>
+                                                    <ul class="nav__megamenu-list">
+                                                        <li><a href="#">Shirt</a></li>
+                                                        <li><a href="#">T-Shirt</a></li>
+                                                        <li><a href="#">Cotton Phant</a></li>
+                                                        <li><a href="#">Jeans</a></li>
+                                                        <li><a href="#">Hoodie &amp; Jackets</a></li>
+                                                        <li><a href="#">Tracks</a></li>
+                                                        <li><a href="#">Shorts</a></li>
+                                                    </ul>
+                                                </div>
+
+                                                <div class="col nav__megamenu-item">
+                                                    <a href="#" class="nav__megamenu-title">watches</a>
+                                                    <ul class="nav__megamenu-list">
+                                                        <li><a href="#">Smart Watches</a></li>
+                                                        <li><a href="#">Diving Watches</a></li>
+                                                        <li><a href="#">Sport Watches</a></li>
+                                                        <li><a href="#">Classic Watches</a></li>
+                                                    </ul>
+                                                </div>
+
+                                                <div class="col nav__megamenu-item">
+                                                    <a href="#"><img src="{% static 'img/shop/megamenu_banner.png' %}"
+                                                                     alt=""></a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="nav__dropdown">
+                                <a href="#">Brands</a>
+                                <ul class="nav__dropdown-menu">
+                                    <li><a href="blog-standard.html">Allen Solly</a></li>
+                                    <li><a href="blog-single.html">BURBERRY</a></li>
+                                    <li><a href="blog-standard.html">Adidas</a></li>
+                                    <li><a href="blog-single.html">Nike</a></li>
+                                    <li><a href="blog-standard.html">Levi Strauss</a></li>
+                                    <li><a href="blog-single.html">Versace</a></li>
+                                    <li><a href="blog-standard.html">calvin klein</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav__dropdown">
+                                <a href="contact.html">Pages</a>
+                                <ul class="nav__dropdown-menu">
+                                    <li><a href="#">Catalog</a></li>
+                                    <li><a href="#">Single Product</a></li>
+                                    <li><a href="#">Cart</a></li>
+                                    <li><a href="#">Checkout</a></li>
+                                    <li><a href="#">About</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                    <li><a href="#">FAQ</a></li>
+                                    <li><a href="#">404</a></li>
+                                </ul>
+                            </li>
+
+                        </ul> <!-- end menu -->
+
+                    </nav> <!-- end nav-wrap -->
+
+
+                    <!-- Search -->
+                    <div class="flex-child nav__search d-none d-lg-block">
+                        <form method="get" class="nav__search-form">
+                            <input type="search" class="nav__search-input" placeholder="Search">
+                            <button type="submit" class="nav__search-submit">
+                                <i class="ui-search"></i>
+                            </button>
+                        </form>
+                    </div>
+
+
+                    <!-- Mobile Wishlist -->
+                    <a href="#" class="nav__mobile-wishlist d-lg-none" aria-label="Mobile wishlist">
+                        <i class="ui-heart"></i>
+                    </a>
+
+                    <!-- Mobile Cart -->
+                    <a href="#" class="nav__mobile-cart d-lg-none">
+                        <i class="ui-bag"></i>
+                        <span class="nav__mobile-cart-amount">(2)</span>
+                    </a>
+
+
+                </div> <!-- end flex-parent -->
+            </div> <!-- end container -->
+
+        </div>
+    </header> <!-- end navigation -->
