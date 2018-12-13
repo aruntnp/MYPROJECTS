@@ -1,0 +1,70 @@
+{% extends 'products/Product-Base.html' %}
+
+{% block content %}
+
+<div class="row">
+
+    <div class="col col-12 col-md-6">
+        <div class="card" style="width: 18rem;">
+
+            {% if object.pimage.all %}
+            {% for p in object.pimage.all %}
+            <img class="card-img-top" src="{{ p.images.url }}" alt="Card image cap">
+            {% endfor %}
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ object.title }}</h5>
+                <p class="card-text">{{ object.description|linebreaks }}</p>
+                <p class="text-success">{{ object.timestamp|timesince }} ago</p>
+
+                <form method="post" action="{% url 'cart:update' %}" class="form">
+                    {% csrf_token %}
+
+                    <input type="hidden" name="prod_pk" value="{{ object.pk }}"/>
+                    <a href="#" class="btn btn-primary">Buy it</a> <!--This has to be changed as Button-->
+                    {% if object in cart.products.all %}
+                    <button type="button" class="btn btn-outline-secondary" disabled>In cart</button>
+                    <button type="submit" class="badge badge-danger">Remove?</button>
+                    {% else %}
+                    <button type="submit" class="btn btn-outline-warning">Add To Cart</button>
+                    {% endif %}
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+</div>
+
+<br>
+ <div class="row">
+
+
+    <div class="col">
+        {% if object.pimage.all %}
+            {% for p in object.pimage.all %}
+            <img class="img-thumbnail" src="{{ p.images_thumb.url }}" alt="Card image cap">
+            {% endfor %}
+        {% endif %}
+    </div>
+ </div>
+
+<div class="row">
+    <div class="col">
+
+        {% if object.pimage.all %}
+            {% for p in object.pimage.all %}
+            <img class="img-thumbnail" src="{{ p.images_list.url }}" alt="Card image cap">
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
+
+

@@ -70,6 +70,7 @@ class ProductListView(ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(ProductListView, self).get_context_data(*args, **kwargs)
+
         # print(context)
         return context
 
