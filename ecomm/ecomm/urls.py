@@ -24,6 +24,7 @@ from accounts import views as accounts_views
 from addresses import views as address_view
 from products.views import ProductListView
 from products import urls
+from django.views.generic import TemplateView
 
 from carts import urls
 
@@ -37,8 +38,7 @@ urlpatterns = [
     url(r'^signup/guest/$', accounts_views.GuestLoginView.as_view(), name='guest_login'),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
     url(r'^login/$', accounts_views.MyLoginView.as_view(), name='login'),
-
-
+    url(r'^login1/$', TemplateView.as_view(template_name='accounts/login.html'), name='login1'),
 
 ]
 

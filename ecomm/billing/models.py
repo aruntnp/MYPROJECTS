@@ -11,6 +11,7 @@ User = settings.AUTH_USER_MODEL
 # Model MANAGER:
 
 class BillingProfileManager(models.Manager):
+
     def new_or_get(self, request):
         user = request.user
         guest_email_id = request.session.get('guest_email_id')
@@ -34,7 +35,7 @@ class BillingProfileManager(models.Manager):
 
 class BillingProfile(models.Model):
     user = models.OneToOneField(User, null=True, blank=True)
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     active = models.BooleanField(default=True)
     update = models.DateTimeField(auto_now=True)
     timestamp = models.DateTimeField(auto_now_add=True)
@@ -52,7 +53,15 @@ class BillingProfile(models.Model):
 
 def user_created_reciver(sender, instance, created, *args, **kwargs):
     if created and instance.email:
-        BillingProfile.objects.get_or_created(user=instance, email=instance.email)
+        try:
+            obj = BillingProfile.objects.get(user=instance, email=instance.email)
+        except:
+            obj = BillingProfile.objects.create(user=instance, email=instance.email)
+            obj.save()
+
+        print(obj)
+
+    # BillingProfile.objects.get_or_created(user=instance, email=instance.email)
 
 
 post_save.connect(user_created_reciver, sender=User)

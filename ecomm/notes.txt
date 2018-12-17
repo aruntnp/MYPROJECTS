@@ -1,0 +1,7 @@
+FIXTURES:
+---------
+Purpose: To store existing DB data in to json/any format in a file/folder.
+query: python manage.py dumpdata products --format json --indent 4 > products/fixtures/products.json
+
+FIXTURES LOAD INTO DB:
+query: python manage.py loaddata products/fixtures/products.json

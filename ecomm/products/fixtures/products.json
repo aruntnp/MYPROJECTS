@@ -1,0 +1,529 @@
+[
+{
+    "model": "products.category",
+    "pk": 1,
+    "fields": {
+        "title": "T-Shirts",
+        "slug": "t-shirts",
+        "parent": null,
+        "products": [
+            1,
+            11
+        ]
+    }
+},
+{
+    "model": "products.category",
+    "pk": 2,
+    "fields": {
+        "title": "Tracks",
+        "slug": "tracks",
+        "parent": null,
+        "products": [
+            1,
+            12
+        ]
+    }
+},
+{
+    "model": "products.category",
+    "pk": 3,
+    "fields": {
+        "title": "Shorts",
+        "slug": "shorts",
+        "parent": null,
+        "products": []
+    }
+},
+{
+    "model": "products.category",
+    "pk": 4,
+    "fields": {
+        "title": "New Year Collections",
+        "slug": "new-year-collections",
+        "parent": null,
+        "products": [
+            1,
+            13
+        ]
+    }
+},
+{
+    "model": "products.category",
+    "pk": 5,
+    "fields": {
+        "title": "T-Shirts",
+        "slug": "t-shirts-sae3",
+        "parent": 4,
+        "products": []
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 4,
+    "fields": {
+        "product": 3,
+        "images": "product/9507458/IMG_E2891/9507458.JPG"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 5,
+    "fields": {
+        "product": 3,
+        "images": "product/91230880/IMG_4832/91230880.JPG"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 6,
+    "fields": {
+        "product": 3,
+        "images": "product/91182486/IMG_5111/91182486.JPG"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 7,
+    "fields": {
+        "product": 4,
+        "images": "product/55561983/IMG_6305/55561983.JPG"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 8,
+    "fields": {
+        "product": 4,
+        "images": "product/27191273/IMG_5505/27191273.JPG"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 9,
+    "fields": {
+        "product": 4,
+        "images": "product/82620773/IMG_5395/82620773.JPG"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 10,
+    "fields": {
+        "product": 5,
+        "images": "product/33065445/IMG_5960/33065445.JPG"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 11,
+    "fields": {
+        "product": 5,
+        "images": "product/68296970/IMG_6513/68296970.JPG"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 12,
+    "fields": {
+        "product": 5,
+        "images": "product/61385813/IMG_5876/61385813.JPG"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 13,
+    "fields": {
+        "product": 6,
+        "images": "product/88198631/IMG_6571/88198631.JPG"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 14,
+    "fields": {
+        "product": 6,
+        "images": "product/3458175/IMG_6044/3458175.JPG"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 15,
+    "fields": {
+        "product": 6,
+        "images": "product/78373929/IMG_6515/78373929.JPG"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 16,
+    "fields": {
+        "product": 7,
+        "images": "product/51151410/IMG_7289/51151410.JPG"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 17,
+    "fields": {
+        "product": 7,
+        "images": "product/12629547/IMG_7209/12629547.JPG"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 18,
+    "fields": {
+        "product": 7,
+        "images": "product/27398321/IMG_7023/27398321.JPG"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 19,
+    "fields": {
+        "product": 8,
+        "images": "product/49122352/IMG_6309/49122352.JPG"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 20,
+    "fields": {
+        "product": 8,
+        "images": "product/22227860/IMG_6350/22227860.JPG"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 21,
+    "fields": {
+        "product": 9,
+        "images": "product/43346152/IMG_E5775/43346152.JPG"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 22,
+    "fields": {
+        "product": 9,
+        "images": "product/80858071/IMG_6327/80858071.JPG"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 23,
+    "fields": {
+        "product": 9,
+        "images": "product/48597530/IMG_6955/48597530.JPG"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 24,
+    "fields": {
+        "product": 10,
+        "images": "product/58712681/IMG_5856/58712681.JPG"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 25,
+    "fields": {
+        "product": 10,
+        "images": "product/93756752/IMG_6335/93756752.JPG"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 26,
+    "fields": {
+        "product": 10,
+        "images": "product/76701007/IMG_6560/76701007.JPG"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 27,
+    "fields": {
+        "product": 11,
+        "images": "product/1649580/IMG_6420/1649580.JPG"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 28,
+    "fields": {
+        "product": 11,
+        "images": "product/51489303/IMG_7573/51489303.JPG"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 29,
+    "fields": {
+        "product": 11,
+        "images": "product/83476965/IMG_6338/83476965.JPG"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 31,
+    "fields": {
+        "product": 12,
+        "images": "product/43442500/IMG_2821/43442500.JPG"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 32,
+    "fields": {
+        "product": 12,
+        "images": "product/48773898/IMG_6305/48773898.JPG"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 33,
+    "fields": {
+        "product": 13,
+        "images": "product/35322290/item_1lg_1/35322290.jpg"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 34,
+    "fields": {
+        "product": 13,
+        "images": "product/93624409/item_1lg_2/93624409.jpg"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 35,
+    "fields": {
+        "product": 13,
+        "images": "product/44799940/item_1lg_3/44799940.jpg"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 36,
+    "fields": {
+        "product": 13,
+        "images": "product/31947408/item_1lg_4/31947408.jpg"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 37,
+    "fields": {
+        "product": 13,
+        "images": "product/5994422/item_1lg_5/5994422.jpg"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 38,
+    "fields": {
+        "product": 1,
+        "images": "product/52249309/item_1lg_1/52249309.jpg"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 39,
+    "fields": {
+        "product": 1,
+        "images": "product/5028102/item_1lg_2/5028102.jpg"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 40,
+    "fields": {
+        "product": 3,
+        "images": "product/34973372/IMG_5187/34973372.JPG"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 41,
+    "fields": {
+        "product": 3,
+        "images": "product/43974391/IMG_6216/43974391.JPG"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 42,
+    "fields": {
+        "product": 3,
+        "images": "product/79350820/IMG_6007/79350820.JPG"
+    }
+},
+{
+    "model": "products.productimage",
+    "pk": 43,
+    "fields": {
+        "product": 3,
+        "images": "product/25327827/IMG_5982/25327827.JPG"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 1,
+    "fields": {
+        "title": "Basic Shirt",
+        "slug": "base",
+        "description": "This is brand new Basics shirt with high quality fabrics.",
+        "price": "180.00",
+        "featured": false,
+        "active": true,
+        "timestamp": "2018-10-11T21:28:12.939Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 3,
+    "fields": {
+        "title": "Allen Solly",
+        "slug": "abc",
+        "description": "This is original Allen Solly. Shine full sleave.",
+        "price": "500.00",
+        "featured": false,
+        "active": true,
+        "timestamp": "2018-10-11T21:28:12.939Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 4,
+    "fields": {
+        "title": "Shoes",
+        "slug": "Shoes",
+        "description": "This is our featured product.",
+        "price": "200.00",
+        "featured": true,
+        "active": true,
+        "timestamp": "2018-10-11T21:28:12.939Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 5,
+    "fields": {
+        "title": "Shoes",
+        "slug": "shoes-o5do",
+        "description": "Another Shoes from Red Tape.",
+        "price": "0.00",
+        "featured": true,
+        "active": true,
+        "timestamp": "2018-10-11T21:28:12.939Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 6,
+    "fields": {
+        "title": "Shorts",
+        "slug": "Shorts",
+        "description": "Expand your summer and spring wardrobe collection with these super-hip grey washed shorts. Keep modish this season with this pair of grey shorts and a white tee.\r\n\r\nGood shorts for men.",
+        "price": "500.00",
+        "featured": false,
+        "active": true,
+        "timestamp": "2018-10-13T18:21:10.431Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 7,
+    "fields": {
+        "title": "Lower fro men",
+        "slug": "lower-fro-men",
+        "description": "This is good lower",
+        "price": "1000.00",
+        "featured": false,
+        "active": true,
+        "timestamp": "2018-10-13T18:34:34.929Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 8,
+    "fields": {
+        "title": "HiFi Lower",
+        "slug": "hifi-lower",
+        "description": "This is good quality lower. Great one",
+        "price": "1500.00",
+        "featured": false,
+        "active": true,
+        "timestamp": "2018-10-13T18:35:40.183Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 9,
+    "fields": {
+        "title": "Belt with Buggle",
+        "slug": "belt-with-buggle",
+        "description": "This is just another belt",
+        "price": "300.00",
+        "featured": false,
+        "active": true,
+        "timestamp": "2018-10-13T18:36:32.255Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 10,
+    "fields": {
+        "title": "Attonn",
+        "slug": "attonn",
+        "description": "sjtlewkdgnlskng\r\nksn\r\nf\r\ndafnkadnb\r\nadbkn\r\nafdbna\r\ndklbn\r\na\r\ndbnakdlbn\r\nadb",
+        "price": "0.00",
+        "featured": false,
+        "active": true,
+        "timestamp": "2018-12-09T19:30:12.822Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 11,
+    "fields": {
+        "title": "Test T-shirts",
+        "slug": "test-t-shirts",
+        "description": "Test stet\r\nse\r\ntes\r\nt\r\nset",
+        "price": "285.00",
+        "featured": false,
+        "active": true,
+        "timestamp": "2018-12-11T10:34:09.818Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 12,
+    "fields": {
+        "title": "QWERTY",
+        "slug": "qwerty",
+        "description": "srdtygkuli",
+        "price": "0.00",
+        "featured": false,
+        "active": true,
+        "timestamp": "2018-12-12T08:38:49.754Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 13,
+    "fields": {
+        "title": "The great T shirt of Tirupur textile city.",
+        "slug": "the-great-t-shirt-of-tirupur-textile-city",
+        "description": "Xyz, kjhnfioshn,\r\nsdmfsgm.\r\nsdoihfgoiudfhohbod\r\ndfgfd\r\ngdfgadfgadfg",
+        "price": "0.00",
+        "featured": false,
+        "active": true,
+        "timestamp": "2018-12-13T10:56:41.551Z"
+    }
+}
+]
