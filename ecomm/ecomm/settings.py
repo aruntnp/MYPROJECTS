@@ -101,6 +101,12 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
 
             ],
+            # # This is added by me:
+            # 'libraries': {
+            #     'cache_bust': 'accounts.templatetags.form_tags',
+            #
+            # }
+            # End me...
         },
     },
 ]
