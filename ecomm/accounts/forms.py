@@ -3,7 +3,18 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import User
 from .models import GuestEmail
-from django.contrib.auth.forms import ReadOnlyPasswordHashField
+from django.contrib.auth.forms import ReadOnlyPasswordHashField, AuthenticationForm
+
+
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(label='Email', widget=forms.TextInput(
+        attrs={'class': 'form-control', 'id': 'email', 'placeholder': 'Email', 'name': 'email'}
+    ))
+
+    password = forms.CharField(label='Password', max_length=50, widget=forms.PasswordInput(
+        attrs={'class': 'form-control', 'id': 'password', 'placeholder': 'Password', 'name': 'password'}
+    ))
+
 
 
 class SignUpForm(UserCreationForm):

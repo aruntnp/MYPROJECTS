@@ -40,14 +40,17 @@
                             </div>
                             <div class="error"></div>
                             <div class="form loginBox">
-                                <form method="post" action="/login" accept-charset="UTF-8">
+                                <form method="post" id="LoginFormId" accept-charset="UTF-8">
                                     {% csrf_token %}
+
                                     {% include 'includes/form.html' with next=request.build_absolute_uri %}
+
                                     {% if next %}
+
                                     <input type="hidden" name="next" value="{{ next }}">
                                     {% endif %}
-                                    <input class="btn btn-default btn-login" type="button" value="Login"
-                                           onclick="loginAjax()">
+                                    <input class="btn btn-default btn-login" type="submit" id="LoginFormButt" name="Enter"
+                                           value="Login">
                                 </form>
                             </div>
                         </div>
@@ -84,3 +87,36 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+$("#LoginFormId").on("submit", function(event){
+    event.preventDefault();
+    console.log("form submitted!")
+    ajaxPost();
+});
+
+function ajaxPost() {
+    console.log("create post is working!") // sanity check
+    var frm = $('#LoginFormId');
+    $.ajax({
+        type: frm.attr('method'),
+        url: 'login/',
+        data: frm.serialize(),
+        success: function(response){
+           
+            if (response.result === true){
+                alert('logged IN!!')
+            }else if(response.result === false){
+
+                shakeModal();
+
+            }
+
+        },
+        error: function(){
+            alert('error')
+            console.log(context)
+        }
+    });
+};
+</script>

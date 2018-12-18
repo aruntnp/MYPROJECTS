@@ -15,6 +15,20 @@ $("#top-bar__sign-inn").on("click", function(e){
 
 });
 
+function formSubmit(){
+
+$("#LoginFormId").on("submit", function(event){
+    event.preventDefault();
+    alert('form submitted!')
+    console.log("form submitted!"
+    ajaxPost();
+});
+
+}
+
+
+
+
 // ************************THIS IS FOR SIDE NAVE MOB**********************
 
 $("#signin-sidenav").on("click", function(){
@@ -22,7 +36,6 @@ $("#signin-sidenav").on("click", function(){
   $('#modalholder').load('/login');
   openLoginModal();
 });
-// ---------------------------- END ----------------------------
 
 function resetNav1() {
     $('#nav-icon-toggle').removeClass('nav-icon-toggle--is-open');
@@ -30,11 +43,14 @@ function resetNav1() {
     $('#main').removeClass('main--is-open');
   }
 
+// ---------------------------- END ----------------------------
+
+
+
 
 
 
 function showRegisterForm(){
-alert('register')
     $('.loginBox').fadeOut('fast',function(){
         $('.registerBox').fadeIn('fast');
         $('.login-footer').fadeOut('fast',function(){
@@ -72,20 +88,7 @@ function openRegisterModal(){
     
 }
 
-function loginAjax(){
-    /*   Remove this comments when moving to server
-    $.post( "/login", function( data ) {
-            if(data == 1){
-                window.location.replace("/home");            
-            } else {
-                 shakeModal(); 
-            }
-        });
-    */
 
-/*   Simulate error message from the server   */
-     shakeModal();
-}
 
 function shakeModal(){
     $('#loginModal .modal-dialog').addClass('shake');

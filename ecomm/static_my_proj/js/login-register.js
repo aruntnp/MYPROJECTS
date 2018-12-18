@@ -15,6 +15,14 @@ $("#top-bar__sign-inn").on("click", function(e){
 
 });
 
+
+
+
+
+
+
+
+
 // ************************THIS IS FOR SIDE NAVE MOB**********************
 
 $("#signin-sidenav").on("click", function(){
@@ -22,13 +30,25 @@ $("#signin-sidenav").on("click", function(){
   $('#modalholder').load('/login');
   openLoginModal();
 });
-// ---------------------------- END ----------------------------
 
 function resetNav1() {
     $('#nav-icon-toggle').removeClass('nav-icon-toggle--is-open');
     $('#sidenav').removeClass('sidenav--is-open');
     $('#main').removeClass('main--is-open');
   }
+
+// ---------------------------- END ----------------------------
+
+function ajaxLogin(){
+
+    $("#LoginFormId").on("submit", function(event){
+    event.preventDefault();
+    console.log("form submitted!")
+    ajaxPost();
+});
+
+
+
 
 
 
@@ -71,20 +91,7 @@ function openRegisterModal(){
     
 }
 
-function loginAjax(){
-    /*   Remove this comments when moving to server
-    $.post( "/login", function( data ) {
-            if(data == 1){
-                window.location.replace("/home");            
-            } else {
-                 shakeModal(); 
-            }
-        });
-    */
 
-/*   Simulate error message from the server   */
-     shakeModal();
-}
 
 function shakeModal(){
     $('#loginModal .modal-dialog').addClass('shake');

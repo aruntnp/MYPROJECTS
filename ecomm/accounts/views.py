@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import FormView
 from django.contrib.auth.views import LoginView
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
 
 from .forms import SignUpForm
 from django.urls import reverse_lazy
@@ -10,6 +10,10 @@ from django.views import View
 from .forms import GuestForm
 from .models import GuestEmail
 from django.utils.http import is_safe_url
+from django.http import HttpResponse, JsonResponse
+import json as simplejson
+
+from .forms import LoginForm
 
 
 # Create your views here.
@@ -50,16 +54,46 @@ class GuestLoginView(FormView):
         return redirect('cart:checkout')
 
 
-class MyLoginView(LoginView):
+class MyLoginView(FormView):
+    form_class = LoginForm
     template_name = 'accounts/login.html'
 
     def form_valid(self, form):
-        # print('--------------- MY FORM_VALID CALLED-----------')
-        try:
-            del self.request.session['guest_email_id']
-            # print('*********************** DELETED GUEST EMAIL ******************')
-        except:
-            # print('*********************** NOT DELETED GUEST EMAIL ******************')
-            pass
+        request = self.request
+        email = form.cleaned_data.get('username')
+        password = form.cleaned_data.get('password')
+        user = authenticate(request, username=email, password=password)
+        print('User---> ' + str(user))
+        if user is not None:
+            login(request, user)
+            print('------------------------')
+            print(login(request, user))
+            try:
+                del self.request.session['guest_email_id']
+                # print('*********************** DELETED GUEST EMAIL ******************')
+            except:
+                # print('*********************** NOT DELETED GUEST EMAIL ******************')
+                pass
+            context = {'result': True}
+            if request.is_ajax():
+                return HttpResponse(simplejson.dumps(context), content_type='application/json')
 
-        return super(MyLoginView, self).form_valid(form)
+            # return super(MyLoginView, self).form_valid(form)
+
+    def form_invalid(self, form):
+        request = self.request
+        context = {'result': False}
+        if request.is_ajax():
+            return HttpResponse(simplejson.dumps(context), content_type='application/json')
+        return super(MyLoginView, self).form_invalid(form)
+
+    # def form_valid(self, form):
+    #     # print('--------------- MY FORM_VALID CALLED-----------')
+    #     try:
+    #         del self.request.session['guest_email_id']
+    #         # print('*********************** DELETED GUEST EMAIL ******************')
+    #     except:
+    #         # print('*********************** NOT DELETED GUEST EMAIL ******************')
+    #         pass
+    #
+    #     return super(MyLoginView, self).form_valid(form)
